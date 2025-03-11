@@ -1,0 +1,23 @@
+Summary of TCP Performance Results:
+
+         Configuration  Throughput (bytes/s)  Goodput (bytes/s)  Packet Loss Rate  Max Packet Size (bytes)  Total Packets  Lost Packets  Total Bytes Received  Duration (s)
+  nagle_on_delayack_on             39.789379          34.124225          0.047619                       40            120             6                  4776    120.032031 
+ nagle_on_delayack_off             39.789625          34.124436          0.000000                       40            120             0                  4776    120.031288 
+ nagle_off_delayack_on             39.789033          34.123928          0.016393                       40            120             2                  4776    120.033076 
+nagle_off_delayack_off             39.789221          34.124089          0.008264                       40            120             1                  4776    120.032507 
+
+Comparison of TCP Configurations:
+- Best Throughput: nagle_on_delayack_off
+- Best Goodput: nagle_on_delayack_off
+- Lowest Packet Loss Rate: nagle_on_delayack_off
+- Largest Maximum Packet Size: nagle_on_delayack_on
+Comparison plot saved as tcp_performance_comparison.png
+
+Analysis of Nagle's Algorithm and Delayed ACK Effect:
+1. Nagle's algorithm aims to reduce small packet overhead by buffering small segments.
+2. Delayed ACK reduces ACK traffic by acknowledging multiple segments at once.
+3. When both are enabled, they can create a 'deadlock' causing delays.
+4. Disabling Nagle's algorithm improves responsiveness for interactive applications.
+5. Disabling Delayed ACK improves response time but increases network traffic.
+6. The configuration with both disabled typically provides the best responsiveness
+   but may not be the most network-efficient option.
